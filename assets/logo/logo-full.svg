@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 401.22 85.92">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Satoshi-Regular, Satoshi;
+        font-size: 48px;
+      }
+
+      .cls-2 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-3 {
+        letter-spacing: 0em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        fill: #ec278a;
+      }
+
+      .cls-8 {
+        fill: #ffcbec;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g>
+        <path class="cls-8" d="m43.68,85.92c-2.52-5.44-11.25-25.17-6.65-44.7C44.12,11.15,75.97,1.44,79.27,0c1.42,2.84,14.59,32.25.71,59.02-10.37,19.99-31.66,25.2-36.31,26.9Z"/>
+        <path class="cls-7" d="m43.68,85.92c-5.63-2.06-25.76-9.82-36.33-26.88C-8.92,32.78,6.71,3.38,8.02.02c3.01,1.01,33.13,12.46,42.27,41.19,6.83,21.46-4.53,40.21-6.62,44.7Z"/>
+      </g>
+      <text class="cls-1" transform="translate(118.02 57.02)"><tspan x="0" y="0">Saku</tspan><tspan class="cls-4" x="101.76" y="0">r</tspan><tspan class="cls-6" x="117.36" y="0">a N</tspan><tspan class="cls-2" x="189.93" y="0">e</tspan><tspan class="cls-3" x="214.46" y="0">x</tspan><tspan class="cls-5" x="236.3" y="0">u</tspan><tspan class="cls-3" x="262.36" y="0">s</tspan></text>
+    </g>
+  </g>
+</svg>
