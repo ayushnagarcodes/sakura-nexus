@@ -2,6 +2,42 @@
 /* Media Queries */
 /*****************/
 
+@media only screen and (max-width: 1000px) {
+    .hero-grid {
+        grid-template-areas:
+            "hero-img hero-img"
+            "hero-japan hero-japan"
+            "hero-content hero-content";
+    }
+
+    .features-header {
+        grid-template-columns: 1fr;
+    }
+
+    .features-header h2 {
+        max-width: 100%;
+    }
+
+    .features-grid article {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1.5rem;
+    }
+
+    .testimonials-container {
+        grid-template-areas:
+            "testimonial-h2 testimonial-h2"
+            "testimonial-img testimonial-img"
+            "testimonial-content testimonial-content";
+        grid-template-columns: 1fr;
+        grid-template-rows: 3.4rem 30rem auto;
+    }
+
+    .testimonials-container .img-container img {
+        object-position: 50% 65%;
+    }
+}
+
 @media only screen and (max-width: 900px) {
     html {
         font-size: 85%;
@@ -19,13 +55,12 @@
         background-color: var(--clr-neutral--50);
         font-family: var(--ff-satoshi-medium);
         opacity: 0;
-        transition: 0.5s;
+        transition: var(--timing-function) 0.5s;
     }
 
     nav.active .menu-items {
         transform: translate(0);
         opacity: 1;
-        transition: 0.5s;
     }
 
     nav ul {
@@ -35,33 +70,25 @@
     nav .menu-hamburger {
         display: grid;
     }
-
-    .hero-grid {
-        grid-template-areas:
-            "img img"
-            "japan japan"
-            "content content";
-    }
-
-    .features-header {
-        grid-template-columns: 1fr;
-    }
-
-    .features-header h2 {
-        max-width: 100%;
-    }
-
-    .features-grid article {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 1.5rem;
-    }
 }
 
-@media only screen and (max-width: 400px) {
-    /* .features-grid {
+@media only screen and (max-width: 680px) {
+    section > div {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    header {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .features-grid {
         display: grid;
         grid-template-columns: 1fr;
-        gap: 2rem;
-    } */
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
 }

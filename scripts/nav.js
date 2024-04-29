@@ -3,16 +3,18 @@ const navMenu = document.querySelector("nav");
 const hamburgerMenu = document.querySelector(".menu-hamburger");
 const navLinks = document.querySelectorAll(".menu-items ul li");
 const translateBtn = document.getElementById("btn-translate");
+const heroSection = document.querySelector(".hero-section");
 
+// Hamburger Menu
 function modifyNav() {
     if (navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
     }
 }
 
-hamburgerMenu.onclick = () => {
+hamburgerMenu.addEventListener("click", () => {
     navMenu.classList.toggle("active");
-};
+});
 
 navLinks.forEach((link) => {
     link.addEventListener("click", () => {
@@ -20,12 +22,30 @@ navLinks.forEach((link) => {
     });
 });
 
-translateBtn.onclick = () => {
-    console.log("Translating...");
-};
-
-window.onresize = () => {
+window.addEventListener("resize", () => {
     if (window.innerWidth > 900 && navMenu.classList.contains("active")) {
         navMenu.classList.remove("active");
     }
+});
+
+// Sticky Nav
+const observer = new window.IntersectionObserver(
+    ([entry]) => {
+        if (entry.isIntersecting) {
+            header.classList.remove("sticky");
+            return;
+        }
+        header.classList.add("sticky");
+    },
+    {
+        root: null,
+        threshold: 0,
+        rootMargin: "-80px",
+    }
+);
+observer.observe(heroSection);
+
+// Translate Page
+translateBtn.onclick = () => {
+    console.log("Translating...");
 };
