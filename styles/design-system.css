@@ -1,0 +1,116 @@
+@import url("./satoshi.css");
+
+:root {
+    --ff-satoshi-light: "Satoshi-Light", sans-serif;
+    --ff-satoshi-regular: "Satoshi-Regular", sans-serif;
+    --ff-satoshi-medium: "Satoshi-Medium", sans-serif;
+    --ff-satoshi-bold: "Satoshi-Bold", sans-serif;
+
+    --fs-4xl: 3.8rem;
+    --fs-2xl: 2.4rem;
+    --fs-xl: 1.9rem;
+    --fs-lg: 1.6rem;
+    --fs-md: 1.25rem;
+    --fs-base: 1rem;
+
+    --clr-primary-50: #fef1f9;
+    --clr-primary-100: #fee5f4;
+    --clr-primary-200: #ffcbec;
+    --clr-primary-300: #ffa1da;
+    --clr-primary-400: #ff67c0;
+    --clr-primary-500: #fa3aa4;
+    --clr-primary-600: #ec278a;
+    --clr-primary-700: #cc0a66;
+    --clr-primary-800: #a90b54;
+    --clr-primary-900: #8c0f48;
+    --clr-primary-950: #560128;
+
+    --clr-neutral--50: #ffffff;
+    --clr-neutral--75: #f9fafb;
+    --clr-neutral--100: #efefef;
+    --clr-neutral--200: #dcdcdc;
+    --clr-neutral--300: #bdbdbd;
+    --clr-neutral--400: #989898;
+    --clr-neutral--500: #7c7c7c;
+    --clr-neutral--600: #656565;
+    --clr-neutral--700: #525252;
+    --clr-neutral--800: #464646;
+    --clr-neutral--900: #3d3d3d;
+    --clr-neutral--950: #292929;
+
+    --lh-btn: normal;
+    --lh-heading: 124%;
+
+    --br-small: 6px;
+    --br-medium: 12px;
+
+    --border: 1px solid var(--clr-primary-300);
+    --timing-function: cubic-bezier(0.46, 0.03, 0.52, 0.96);
+}
+
+/*****************/
+/* Reset default */
+/*****************/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--ff-satoshi-regular);
+    font-size: var(--fs-base);
+    overflow-x: hidden;
+    background-color: var(--clr-neutral--50);
+}
+
+h1,
+h2,
+h3 {
+    font-weight: normal;
+}
+
+div:has(img) {
+    overflow: hidden;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-hamburger,
+ul,
+button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    height: fit-content;
+}
+
+button {
+    background-color: transparent;
+    outline: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    line-height: var(--lh-btn);
+    cursor: pointer;
+}

@@ -15,16 +15,24 @@
             sizes="16x16"
             href="/assets/logo/favicon-16x16.png"
         />
+
+        <!-- Styles -->
+        <link
+            rel="stylesheet"
+            href="./styles/design-system.css"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="./styles/header.css" type="text/css" />
         <link rel="stylesheet" href="./styles/home-page.css" type="text/css" />
         <link
             rel="stylesheet"
             href="./styles/home-page-queries.css"
             type="text/css"
         />
+        <link rel="stylesheet" href="./styles/footer.css" type="text/css" />
         <title>Sakura Nexus - Work Opportunities</title>
     </head>
     <body>
-        <!-- Header + Nav -->
         <header>
             <nav>
                 <a href="#" class="logo"
@@ -52,7 +60,6 @@
             </nav>
         </header>
 
-        <!-- Main Website -->
         <main>
             <!-- Hero Section -->
             <section id="hero" class="hero-section">
@@ -60,11 +67,11 @@
                     <h1>Blossom Your Career with Sakura Nexus</h1>
 
                     <div class="hero-grid">
-                        <div class="hero-img">
+                        <div class="hero-img img-transition">
                             <img src="./assets/images/sakuro-people.webp" />
                         </div>
 
-                        <div class="hero-japan">
+                        <div class="hero-japan img-transition">
                             <img
                                 src="./assets/images/japan-banner.png"
                                 alt=""
@@ -214,7 +221,7 @@
                 <div class="testimonials-container">
                     <h2>Voices of Success</h2>
 
-                    <div class="img-container">
+                    <div class="img-container img-transition">
                         <img
                             src="./assets/images/sakuro-lake.webp"
                             alt="sakuro along a lake"
@@ -288,8 +295,75 @@
                     </div>
                 </div>
             </section>
+
+            <!-- CTA Section -->
+            <section id="cta" class="cta-section">
+                <div class="cta-container">
+                    <h2>Find Your Dream Job Now!</h2>
+                    <button id="btn-view-jobs">
+                        <span>View opportunities </span>
+                        <img
+                            src="./assets/icons/ArrowRight.svg"
+                            alt="arrow icon"
+                        />
+                    </button>
+                </div>
+            </section>
         </main>
 
-        <script src="./scripts/nav.js"></script>
+        <footer>
+            <div class="footer-container">
+                <article class="description">
+                    <div class="logo">
+                        <img src="./assets/logo/logo-with-bg.svg" alt="logo" />
+                    </div>
+                    <span
+                        >Discover Your Path to Success in Japan's Dynamic Job
+                        Market</span
+                    >
+                </article>
+
+                <article class="socials">
+                    <h3>We&#39;d Like & Love to Help</h3>
+                    <ul>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="./assets/icons/Mail.svg"
+                                    alt="email icon"
+                                /><span>Email</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="./assets/icons/XLogo.svg"
+                                    alt="twitter icon"
+                                /><span>Twitter</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="./assets/icons/LinkedinLogo.svg"
+                                    alt="linkedin icon"
+                                /><span>LinkedIn</span></a
+                            >
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="links">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#trusted-by">Explore</a></li>
+                        <li><a href="./pages/jobs.html">Jobs</a></li>
+                        <li><a href="./pages/about-us.html">About Us</a></li>
+                    </ul>
+                </article>
+            </div>
+        </footer>
+
+        <script src="./scripts/header.js"></script>
     </body>
 </html>

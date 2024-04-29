@@ -43,32 +43,8 @@
         font-size: 85%;
     }
 
-    nav .menu-items {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100svh;
-        transform: translate(120%);
-        flex-direction: column;
-        justify-content: center;
-        background-color: var(--clr-neutral--50);
-        font-family: var(--ff-satoshi-medium);
-        opacity: 0;
-        transition: var(--timing-function) 0.5s;
-    }
-
-    nav.active .menu-items {
-        transform: translate(0);
-        opacity: 1;
-    }
-
-    nav ul {
-        flex-direction: column;
-    }
-
-    nav .menu-hamburger {
-        display: grid;
+    .cta-container {
+        background-position: 0;
     }
 }
 
@@ -78,11 +54,6 @@
         padding-right: 1.5rem;
     }
 
-    header {
-        padding-left: 2rem;
-        padding-right: 2rem;
-    }
-
     .features-grid {
         display: grid;
         grid-template-columns: 1fr;
@@ -90,5 +61,13 @@
 
     .testimonials-grid {
         grid-template-columns: 1fr;
+    }
+
+    .cta-section {
+        padding: 0 1.5rem;
+    }
+
+    .cta-container {
+        background-position: 50%;
     }
 }
