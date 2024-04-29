@@ -42,4 +42,26 @@
             "japan japan"
             "content content";
     }
+
+    .features-header {
+        grid-template-columns: 1fr;
+    }
+
+    .features-header h2 {
+        max-width: 100%;
+    }
+
+    .features-grid article {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    /* .features-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    } */
 }
