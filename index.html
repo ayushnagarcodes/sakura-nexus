@@ -19,17 +19,17 @@
         <!-- Styles -->
         <link
             rel="stylesheet"
-            href="./styles/design-system.css"
+            href="/styles/design-system.css"
             type="text/css"
         />
-        <link rel="stylesheet" href="./styles/header.css" type="text/css" />
-        <link rel="stylesheet" href="./styles/home-page.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/home-page.css" type="text/css" />
         <link
             rel="stylesheet"
-            href="./styles/home-page-queries.css"
+            href="/styles/home-page-queries.css"
             type="text/css"
         />
-        <link rel="stylesheet" href="./styles/footer.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
         <title>Sakura Nexus - Work Opportunities</title>
     </head>
     <body>
@@ -37,7 +37,7 @@
             <nav>
                 <a href="#" class="logo"
                     ><img
-                        src="./assets/logo/logo-full.svg"
+                        src="/assets/logo/logo-full.svg"
                         alt="sakura nexus logo"
                 /></a>
                 <div class="menu-container">
@@ -45,13 +45,13 @@
                         <ul>
                             <li><a href="#">Home</a></li>
                             <li><a href="#trusted-by">Explore</a></li>
-                            <li><a href="./pages/jobs.html">Jobs</a></li>
+                            <li><a href="/pages/jobs.html">Jobs</a></li>
                             <li>
-                                <a href="./pages/about-us.html">About Us</a>
+                                <a href="/pages/about-us.html">About Us</a>
                             </li>
                         </ul>
                         <button id="btn-translate">
-                            <img src="./assets/icons/Translate.svg" />
+                            <img src="/assets/icons/Translate.svg" />
                         </button>
                     </div>
 
@@ -62,20 +62,17 @@
 
         <main>
             <!-- Hero Section -->
-            <section id="hero" class="hero-section">
+            <section id="hero" class="hero-section observe">
                 <div class="hero-container">
                     <h1>Blossom Your Career with Sakura Nexus</h1>
 
                     <div class="hero-grid">
                         <div class="hero-img img-transition">
-                            <img src="./assets/images/sakuro-people.webp" />
+                            <img src="/assets/images/sakuro-people.webp" />
                         </div>
 
                         <div class="hero-japan img-transition">
-                            <img
-                                src="./assets/images/japan-banner.png"
-                                alt=""
-                            />
+                            <img src="/assets/images/japan-banner.png" alt="" />
                         </div>
 
                         <div class="hero-content">
@@ -90,8 +87,18 @@
                                 cherry blossoms.
                             </p>
                             <div class="btn-container">
-                                <button id="btn-find-work">Find work</button>
-                                <button id="btn-learn-more">Learn more</button>
+                                <button
+                                    id="btn-find-work"
+                                    onclick="window.location.href='/pages/jobs.html'"
+                                >
+                                    Find work
+                                </button>
+                                <button
+                                    id="btn-learn-more"
+                                    onclick="document.getElementById('trusted-by').scrollIntoView()"
+                                >
+                                    Learn more
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -104,32 +111,32 @@
                     <h4>TRUSTED BY</h4>
                     <div class="trusted-by-flex">
                         <img
-                            src="./assets/icons/Microsoft.svg"
+                            src="/assets/icons/Microsoft.svg"
                             alt="microsoft logo"
                             title="Microsoft"
                         />
                         <img
-                            src="./assets/icons/meta.svg"
+                            src="/assets/icons/meta.svg"
                             alt="meta logo"
                             title="Meta"
                         />
                         <img
-                            src="./assets/icons/jll.svg"
+                            src="/assets/icons/jll.svg"
                             alt="jll logo"
                             title="JLL"
                         />
                         <img
-                            src="./assets/icons/google.svg"
+                            src="/assets/icons/google.svg"
                             alt="google logo"
                             title="Google"
                         />
                         <img
-                            src="./assets/icons/accenture.svg"
+                            src="/assets/icons/accenture.svg"
                             alt="accenture logo"
                             title="Accenture"
                         />
                         <img
-                            src="./assets/icons/apple.svg"
+                            src="/assets/icons/apple.svg"
                             alt="apple logo"
                             title="Apple"
                         />
@@ -155,7 +162,7 @@
                         <article>
                             <div class="icon">
                                 <img
-                                    src="./assets/icons/Curate.svg"
+                                    src="/assets/icons/Curate.svg"
                                     alt="curate icon"
                                 />
                             </div>
@@ -171,7 +178,7 @@
                         <article>
                             <div class="icon">
                                 <img
-                                    src="./assets/icons/Personalize.svg"
+                                    src="/assets/icons/Personalize.svg"
                                     alt="personalize icon"
                                 />
                             </div>
@@ -186,7 +193,7 @@
                         <article>
                             <div class="icon">
                                 <img
-                                    src="./assets/icons/Culture.svg"
+                                    src="/assets/icons/Culture.svg"
                                     alt="culture icon"
                                 />
                             </div>
@@ -201,7 +208,7 @@
                         <article>
                             <div class="icon">
                                 <img
-                                    src="./assets/icons/Community.svg"
+                                    src="/assets/icons/Community.svg"
                                     alt="community icon"
                                 />
                             </div>
@@ -223,7 +230,7 @@
 
                     <div class="img-container img-transition">
                         <img
-                            src="./assets/images/sakuro-lake.webp"
+                            src="/assets/images/sakuro-lake.webp"
                             alt="sakuro along a lake"
                         />
                     </div>
@@ -232,7 +239,7 @@
                         <article>
                             <div class="avatar">
                                 <img
-                                    src="./assets/images/avatar-1.png"
+                                    src="/assets/images/avatar-1.png"
                                     alt="avatar 1"
                                 />
                             </div>
@@ -248,7 +255,7 @@
                         <article>
                             <div class="avatar">
                                 <img
-                                    src="./assets/images/avatar-2.png"
+                                    src="/assets/images/avatar-2.png"
                                     alt="avatar 2"
                                 />
                             </div>
@@ -264,7 +271,7 @@
                         <article>
                             <div class="avatar">
                                 <img
-                                    src="./assets/images/avatar-3.png"
+                                    src="/assets/images/avatar-3.png"
                                     alt="avatar 3"
                                 />
                             </div>
@@ -280,7 +287,7 @@
                         <article>
                             <div class="avatar">
                                 <img
-                                    src="./assets/images/avatar-4.png"
+                                    src="/assets/images/avatar-4.png"
                                     alt="avatar 4"
                                 />
                             </div>
@@ -300,10 +307,13 @@
             <section id="cta" class="cta-section">
                 <div class="cta-container">
                     <h2>Find Your Dream Job Now!</h2>
-                    <button id="btn-view-jobs">
+                    <button
+                        id="btn-view-jobs"
+                        onclick="window.location.href='/pages/jobs.html'"
+                    >
                         <span>View opportunities </span>
                         <img
-                            src="./assets/icons/ArrowRight.svg"
+                            src="/assets/icons/ArrowRight.svg"
                             alt="arrow icon"
                         />
                     </button>
@@ -315,7 +325,7 @@
             <div class="footer-container">
                 <article class="description">
                     <div class="logo">
-                        <img src="./assets/logo/logo-with-bg.svg" alt="logo" />
+                        <img src="/assets/logo/logo-with-bg.svg" alt="logo" />
                     </div>
                     <span
                         >Discover Your Path to Success in Japan's Dynamic Job
@@ -329,7 +339,7 @@
                         <li>
                             <a href="#"
                                 ><img
-                                    src="./assets/icons/Mail.svg"
+                                    src="/assets/icons/Mail.svg"
                                     alt="email icon"
                                 /><span>Email</span></a
                             >
@@ -337,7 +347,7 @@
                         <li>
                             <a href="#"
                                 ><img
-                                    src="./assets/icons/XLogo.svg"
+                                    src="/assets/icons/XLogo.svg"
                                     alt="twitter icon"
                                 /><span>Twitter</span></a
                             >
@@ -345,7 +355,7 @@
                         <li>
                             <a href="#"
                                 ><img
-                                    src="./assets/icons/LinkedinLogo.svg"
+                                    src="/assets/icons/LinkedinLogo.svg"
                                     alt="linkedin icon"
                                 /><span>LinkedIn</span></a
                             >
@@ -357,13 +367,13 @@
                     <ul>
                         <li><a href="#">Home</a></li>
                         <li><a href="#trusted-by">Explore</a></li>
-                        <li><a href="./pages/jobs.html">Jobs</a></li>
-                        <li><a href="./pages/about-us.html">About Us</a></li>
+                        <li><a href="/pages/jobs.html">Jobs</a></li>
+                        <li><a href="/pages/about-us.html">About Us</a></li>
                     </ul>
                 </article>
             </div>
         </footer>
 
-        <script src="./scripts/header.js"></script>
+        <script src="/scripts/header.js"></script>
     </body>
 </html>

@@ -3,7 +3,7 @@ const navMenu = document.querySelector("nav");
 const hamburgerMenu = document.querySelector(".menu-hamburger");
 const navLinks = document.querySelectorAll(".menu-items ul li");
 const translateBtn = document.getElementById("btn-translate");
-const heroSection = document.querySelector(".hero-section");
+const elementToObserve = document.querySelector(".observe");
 
 // Hamburger Menu
 function modifyNav() {
@@ -43,7 +43,7 @@ const observer = new window.IntersectionObserver(
         rootMargin: "-80px",
     }
 );
-observer.observe(heroSection);
+observer.observe(elementToObserve);
 
 // Translate Page
 translateBtn.onclick = () => {

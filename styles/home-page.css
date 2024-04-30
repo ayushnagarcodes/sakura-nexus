@@ -11,8 +11,7 @@ section {
     scroll-margin-top: 65px;
 }
 
-section > div,
-footer > div {
+section > div {
     max-width: 1440px;
     margin: auto;
     padding-left: 6rem;
@@ -321,7 +320,7 @@ footer > div {
             rgba(0, 0, 0, 0.4) 0%,
             rgba(0, 0, 0, 0.4) 100%
         ),
-        url("./../assets/images/buildings.webp") lightgray 0px -64px / cover no-repeat;
+        url("/assets/images/buildings.webp") lightgray 0px -64px / cover no-repeat;
     background-size: cover;
     border-radius: var(--br-medium);
     padding: 6rem;
