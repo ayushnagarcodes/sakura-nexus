@@ -28,7 +28,7 @@ window.addEventListener("resize", () => {
 });
 
 // Sticky Nav - Not for "Jobs" page
-const observer = new window.IntersectionObserver(
+const observer = new IntersectionObserver(
     ([entry]) => {
         if (entry.isIntersecting) {
             header.classList.remove("sticky");
@@ -42,6 +42,6 @@ const observer = new window.IntersectionObserver(
         rootMargin: "-80px",
     }
 );
-if (window.location.pathname !== "/pages/jobs.html") {
+if (!location.pathname.startsWith("/pages/jobs")) {
     observer.observe(elementToObserve);
 }

@@ -63,7 +63,7 @@ async function createURL() {
 
         // Building URL
 
-        let url = `http://api.adzuna.com/v1/api/jobs/${countryCode}/search/1?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=10`;
+        let url = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/1?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=10`;
 
         if (keyword) {
             if (keyword.includes(" ")) {
