@@ -2,7 +2,6 @@ const header = document.querySelector("header");
 const navMenu = document.querySelector("nav");
 const hamburgerMenu = document.querySelector(".menu-hamburger");
 const navLinks = document.querySelectorAll(".menu-items ul li");
-const translateBtn = document.getElementById("btn-translate");
 const elementToObserve = document.querySelector(".observe");
 
 // Hamburger Menu
@@ -28,7 +27,7 @@ window.addEventListener("resize", () => {
     }
 });
 
-// Sticky Nav
+// Sticky Nav - Not for "Jobs" page
 const observer = new window.IntersectionObserver(
     ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,9 +42,6 @@ const observer = new window.IntersectionObserver(
         rootMargin: "-80px",
     }
 );
-observer.observe(elementToObserve);
-
-// Translate Page
-translateBtn.onclick = () => {
-    console.log("Translating...");
-};
+if (window.location.pathname !== "/pages/jobs.html") {
+    observer.observe(elementToObserve);
+}

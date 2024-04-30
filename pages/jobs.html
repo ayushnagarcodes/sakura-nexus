@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/logo/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/logo/favicon-16x16.png"
+        />
+
+        <!-- Styles -->
+        <link
+            rel="stylesheet"
+            href="/styles/design-system.css"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="/styles/header.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/jobs-page.css" type="text/css" />
+        <link rel="stylesheet" href="/styles/footer.css" type="text/css" />
+        <title>Find work opportunities</title>
+    </head>
+    <body>
+        <header class="sticky">
+            <nav>
+                <a href="/index.html" class="logo"
+                    ><img
+                        src="/assets/logo/logo-full.svg"
+                        alt="sakura nexus logo"
+                /></a>
+                <div class="menu-container">
+                    <div class="menu-items">
+                        <ul>
+                            <li><a href="/index.html">Home</a></li>
+                            <li><a href="#">Jobs</a></li>
+                            <li>
+                                <a href="/index.html#features">About Us</a>
+                            </li>
+                        </ul>
+                        <button id="btn-translate">
+                            <img src="/assets/icons/Translate.svg" />
+                        </button>
+                        <div id="google-translate"></div>
+                        <button id="btn-sign-in">Sign in</button>
+                    </div>
+
+                    <div class="menu-hamburger"><span></span></div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="filter-section">
+                <div class="filter-heading">
+                    <img
+                        src="/assets/icons/Filter.svg"
+                        alt="filter icon"
+                    /><span>Filters</span>
+                </div>
+
+                <form class="filter-form">
+                    <div>
+                        <label for="keyword">Keyword</label>
+                        <input
+                            type="text"
+                            id="keyword"
+                            placeholder="e.g. Software Developer"
+                        />
+                    </div>
+
+                    <div>
+                        <label for="location">Location</label>
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="Enter Region"
+                        />
+                        <button id="btn-locate" title="Detect location">
+                            <img src="/assets/icons/Gps.svg" alt="GPS icon" />
+                        </button>
+                    </div>
+
+                    <div>
+                        <label for="salary">Annual Salary (in thousands)</label>
+                        <input
+                            type="text"
+                            id="salary"
+                            placeholder="Minimum Expected"
+                        />
+                    </div>
+
+                    <button id="btn-search" type="submit">
+                        <img
+                            src="/assets/icons/Search.svg"
+                            alt="search icon"
+                        />Search
+                    </button>
+                </form>
+            </section>
+
+            <section class="job-list-section"></section>
+        </main>
+
+        <footer>
+            <div class="footer-container">
+                <article class="description">
+                    <div class="logo">
+                        <img src="/assets/logo/logo-with-bg.svg" alt="logo" />
+                    </div>
+                    <span
+                        >Discover Your Path to Success in Japan's Dynamic Job
+                        Market</span
+                    >
+                </article>
+
+                <article class="socials">
+                    <h3>We&#39;d Like & Love to Help</h3>
+                    <ul>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="/assets/icons/Mail.svg"
+                                    alt="email icon"
+                                /><span>Email</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="/assets/icons/XLogo.svg"
+                                    alt="twitter icon"
+                                /><span>Twitter</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="#"
+                                ><img
+                                    src="/assets/icons/LinkedinLogo.svg"
+                                    alt="linkedin icon"
+                                /><span>LinkedIn</span></a
+                            >
+                        </li>
+                    </ul>
+                </article>
+
+                <article class="links">
+                    <ul>
+                        <li><a href="/index.html">Home</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="/index.html#features">About Us</a></li>
+                    </ul>
+                </article>
+            </div>
+        </footer>
+
+        <script src="/scripts/header.js"></script>
+        <script src="/scripts/jobs.js" type="module"></script>
+        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        <script src="/scripts/translate.js"></script>
+    </body>
+</html>

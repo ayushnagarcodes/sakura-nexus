@@ -241,7 +241,7 @@ section > div {
 
 .features-grid article:hover {
     background-color: var(--clr-primary-600);
-    color: var(--clr-neutral--50);
+    color: var(--clr-neutral-50);
 }
 
 .features-grid article:hover .icon {
