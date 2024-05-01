@@ -173,6 +173,11 @@ main {
     gap: 1.5rem;
 }
 
+.job-card img {
+    width: 24px;
+    height: 24px;
+}
+
 .job-card .title {
     font-family: var(--ff-satoshi-medium);
     font-size: var(--fs-md);
@@ -184,9 +189,8 @@ main {
     gap: 1.5rem 2rem;
 }
 
-.job-card img {
-    width: 24px;
-    height: 24px;
+.job-card .salary .salary-heading {
+    margin-bottom: 0.25rem;
 }
 
 .card-footer {
@@ -275,6 +279,10 @@ body:has(.dialog-job-info.active) {
     gap: 2rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid var(--clr-neutral-200);
+}
+
+.job-info-container .salary .salary-heading {
+    margin-bottom: 0.25rem;
 }
 
 .job-info-container h2 {

@@ -18,6 +18,7 @@ const dialogCloseBtn = document.getElementById("btn-close-dialog");
 // Global Constants
 let countryCode = "in";
 let region = "bangalore";
+let currency = "INR";
 let currentUrl = "";
 let currentPage = 1;
 let totalPages = null;
@@ -82,6 +83,18 @@ async function getCountryCode(region) {
     }
 }
 
+async function getCountryCurrency(code) {
+    try {
+        const res = await fetch(
+            `https://restcountries.com/v3.1/alpha/${code}?fields=currencies`
+        );
+        const data = await res.json();
+        return Object.keys(data.currencies)[0];
+    } catch (err) {
+        throw new Error(err.message);
+    }
+}
+
 async function createUrl() {
     try {
         let keyword = inputKeywordEl.value;
@@ -139,7 +152,10 @@ async function getJobList(url) {
 
 function showDialog(obj) {
     dialogJobInfo.classList.add("active");
-    dialogJobInfo.insertAdjacentHTML("afterbegin", createJobInfoEl(obj));
+    dialogJobInfo.insertAdjacentHTML(
+        "afterbegin",
+        createJobInfoEl(obj, currency)
+    );
     dialogJobInfo.showModal();
 }
 
@@ -155,7 +171,7 @@ function renderUI({ count, results }) {
 
     // Add Job Cards
     results.forEach((obj) => {
-        const jobCardEl = createJobCard(obj);
+        const jobCardEl = createJobCard(obj, currency);
         jobListEl.insertAdjacentHTML("beforeend", jobCardEl);
     });
 
@@ -196,8 +212,7 @@ async function handleFormSubmit(e) {
             throw new Error(err);
         }
 
-        // Resetting currentPage
-        currentPage = 1;
+        currentPage = 1; // Resetting currentPage
 
         const url = await createUrl();
         const data = await getJobList(url);
@@ -208,6 +223,8 @@ async function handleFormSubmit(e) {
                 "👀 No jobs found! Please enter a different location or salary."
             );
         }
+
+        currency = await getCountryCurrency(countryCode);
 
         renderUI(data);
     } catch (err) {

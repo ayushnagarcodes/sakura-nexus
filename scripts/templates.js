@@ -8,28 +8,38 @@ export const loaderEl = `
 function dateDiffText(inputDate) {
     let createdAtText = "";
     const numDaysPassed = Math.round(
-        (Date.now() - new Date(inputDate)) / (1000 * 60 * 60 * 24)
+        (Date.now() - Date.parse(inputDate)) / (1000 * 60 * 60 * 24)
     );
+
     if (numDaysPassed >= 14) {
         createdAtText = `${Math.round(numDaysPassed / 7)} weeks ago`;
     } else if (numDaysPassed >= 7) {
         createdAtText = `1 week ago`;
     } else if (numDaysPassed > 1) {
         createdAtText = `${numDaysPassed} days ago`;
-    } else if (numDaysPassed === 1) {
+    } else {
         createdAtText = `1 day ago`;
     }
 
     return createdAtText;
 }
 
-function salaryText(salary_min, salary_max) {
+function salaryText(currency, salary_min, salary_max) {
+    const formatter = new Intl.NumberFormat(navigator.language, {
+        style: "currency",
+        currency,
+        maximumFractionDigits: 0,
+    });
+
+    const formattedSalaryMin = formatter.format(Math.round(salary_min));
+    const formattedSalaryMax = formatter.format(Math.round(salary_max));
+
     return salary_min === salary_max
-        ? `¥ ${salary_min}`
-        : `¥ ${salary_min} - ¥ ${salary_max}`;
+        ? formattedSalaryMin
+        : `${formattedSalaryMin} - ${formattedSalaryMax}`;
 }
 
-export function createJobCard(obj) {
+export function createJobCard(obj, currency) {
     return `
         <article class="job-card">
             <span class="title">${obj.title}</span>
@@ -62,6 +72,7 @@ export function createJobCard(obj) {
                 </div>
 
                 <span class="amount">${salaryText(
+                    currency,
                     obj.salary_min,
                     obj.salary_max
                 )}</span>
@@ -84,7 +95,7 @@ export function createJobCard(obj) {
     `;
 }
 
-export function createJobInfoEl(obj) {
+export function createJobInfoEl(obj, currency) {
     return `
         <div class="job-info-container">
             <h1 class="title">${obj.title}</h1>
@@ -115,6 +126,7 @@ export function createJobInfoEl(obj) {
                     </div>
 
                     <span class="amount">${salaryText(
+                        currency,
                         obj.salary_min,
                         obj.salary_max
                     )}</span>
