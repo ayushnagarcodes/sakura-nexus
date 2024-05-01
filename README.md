@@ -16,6 +16,8 @@ A website to find work opportunities in Japan. "Sakura" refers to cherry blossom
 -   Multilingual support, allowing users to switch between Japanese and English.
 -   Geocoding and Reverse-geocoding to resolve location information.
 -   Users can also detect their location.
+-   Internationalization of currencies.
+-   Pagination to prevent loading of large data at the same time.
 
 <br />
 
