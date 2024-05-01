@@ -79,3 +79,27 @@ export function createJobCard(obj) {
         </article>
     `;
 }
+
+export function createPaginationEl(currentPage, totalPages) {
+    return `
+        <div class="pagination">
+            <button id="btn-previous-page">
+                <img
+                    src="/assets/icons/CaretLeft.svg"
+                    alt="left arrow icon"
+                />
+            </button>
+            <p>
+                <span id="current-page">${currentPage}</span>
+                /
+                <span id="total-pages">${totalPages}</span>
+            </p>
+            <button id="btn-next-page">
+                <img
+                    src="/assets/icons/CaretRight.svg"
+                    alt="right arrow icon"
+                />
+            </button>
+        </div>
+    `;
+}

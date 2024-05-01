@@ -1,13 +1,31 @@
-import { loaderEl, createJobCard } from "./template.js";
+import { loaderEl, createJobCard, createPaginationEl } from "./templates.js";
 
+// DOM Elements
 const jobListEl = document.querySelector(".job-list-section");
 const formEl = document.querySelector(".filter-form");
 const inputKeywordEl = document.getElementById("keyword");
 const inputLocationEl = document.getElementById("location");
 const inputSalaryEl = document.getElementById("salary");
 const btnLocate = document.getElementById("btn-locate");
+
+// Global Constants
 let countryCode = "gb";
 let region = "london";
+let url = "";
+let currentPage = 1;
+let totalPages = null;
+const JOBS_PER_PAGE = 10;
+
+// App Functions
+function activateLoader() {
+    jobListEl.innerHTML = "";
+    jobListEl.insertAdjacentHTML("afterbegin", loaderEl);
+    document.querySelector(".loader").classList.add("active");
+}
+
+function deactivateLoader() {
+    document.querySelector(".loader")?.classList.remove("active");
+}
 
 function validateInput() {
     const keyword = inputKeywordEl.value;
@@ -62,8 +80,7 @@ async function createURL() {
         }
 
         // Building URL
-
-        let url = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/1?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=10`;
+        url = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${currentPage}?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=${JOBS_PER_PAGE}`;
 
         if (keyword) {
             if (keyword.includes(" ")) {
@@ -78,7 +95,7 @@ async function createURL() {
 
         salary ? (url += `&salary_min=${salary}`) : (url += `&salary_min=0`);
 
-        url += "&full_time=1&permanent=1&content-type=application/json";
+        url += "&sort_by=date&content-type=application/json";
 
         return url;
     } catch (err) {
@@ -104,46 +121,69 @@ async function getJobList(url) {
     }
 }
 
-function renderUI(dataArr) {
+function renderUI({ count, results }) {
     // Remove Loader
     jobListEl.innerHTML = "";
 
     // Add Job Cards
-    dataArr.forEach((obj) => {
+    results.forEach((obj) => {
         const jobCardEl = createJobCard(obj);
         jobListEl.insertAdjacentHTML("beforeend", jobCardEl);
     });
+
+    // Add Pagination
+    totalPages = Math.ceil(count / JOBS_PER_PAGE);
+    jobListEl.insertAdjacentHTML(
+        "beforeend",
+        createPaginationEl(currentPage, totalPages)
+    );
+
+    // Adding Event Listener to Pagination Buttons
+    document
+        .getElementById("btn-previous-page")
+        .addEventListener("click", handlePreviousPage);
+    document
+        .getElementById("btn-next-page")
+        .addEventListener("click", handleNextPage);
 }
 
-// Handling Filter Form Submit
-formEl.addEventListener("submit", async (e) => {
+async function handleFormSubmit(e) {
     e.preventDefault();
-
-    // Activate Loader
-    jobListEl.innerHTML = "";
-    jobListEl.insertAdjacentHTML("afterbegin", loaderEl);
-    document.querySelector(".loader").classList.add("active");
+    activateLoader();
 
     // Validate Input
     const { validateStatus, err } = validateInput();
+    if (!validateStatus) {
+        deactivateLoader();
+        return alert(err);
+    }
 
     // Get Location info + Jobs data
     try {
         if (validateStatus) {
+            // Resetting currentPage
+            currentPage = 1;
+
             const url = await createURL();
             const data = await getJobList(url);
-            renderUI(data.results);
+
+            // If no results found, throw an error
+            if (data.count === 0) {
+                throw new Error(
+                    "👀 No jobs found in this area! Please enter a different location."
+                );
+            }
+
+            renderUI(data);
         }
     } catch (err) {
         alert(err.message);
     } finally {
-        // Deactivate Loader
-        document.querySelector(".loader")?.classList.remove("active");
+        deactivateLoader();
     }
-});
+}
 
-// Get User Location
-btnLocate.addEventListener("click", (e) => {
+async function getUserLocation(e) {
     e.preventDefault();
 
     navigator.geolocation.getCurrentPosition(
@@ -173,14 +213,58 @@ btnLocate.addEventListener("click", (e) => {
         },
         () => alert("🧐 Could not get your position!")
     );
-});
+}
 
-// On Window Load
-addEventListener("load", () => {
+function initializeApp() {
     if (location.hash) {
         return;
     }
+
     // Add the Loader
     jobListEl.innerHTML = "";
     jobListEl.insertAdjacentHTML("afterbegin", loaderEl);
-});
+}
+
+async function getPage() {
+    try {
+        activateLoader();
+        const data = await getJobList(url);
+        renderUI(data);
+    } catch (err) {
+        alert(err.message);
+    } finally {
+        deactivateLoader();
+    }
+}
+
+function handlePreviousPage(e) {
+    e.target.parentElement.disabled = true;
+    if (currentPage > 1) {
+        scroll(0, 0);
+        currentPage -= 1;
+
+        // Create new URL -
+        // replacing page number between 'search/' and '?' in the URL with currentPage
+        url = url.replace(/search\/([^?]+)\?/, `search/${currentPage}?`);
+        getPage();
+    }
+    e.target.parentElement.disabled = false;
+}
+
+function handleNextPage(e) {
+    e.target.parentElement.disabled = true;
+    if (currentPage + 1 <= totalPages) {
+        scroll(0, 0);
+        currentPage += 1;
+
+        // Create new URL
+        url = url.replace(/search\/([^?]+)\?/, `search/${currentPage}?`);
+        getPage();
+    }
+    e.target.parentElement.disabled = false;
+}
+
+// Events
+addEventListener("load", initializeApp);
+formEl.addEventListener("submit", handleFormSubmit);
+btnLocate.addEventListener("click", getUserLocation);
