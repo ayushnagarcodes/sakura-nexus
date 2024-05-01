@@ -89,6 +89,11 @@ input {
     font: inherit;
 }
 
+input:disabled {
+    background-color: var(--clr-neutral-100);
+    cursor: not-allowed;
+}
+
 div:has(img) {
     overflow: hidden;
 }
@@ -125,4 +130,9 @@ button {
     color: inherit;
     line-height: var(--lh-btn);
     cursor: pointer;
+}
+
+button:disabled {
+    background-color: var(--clr-primary-800) !important;
+    cursor: not-allowed;
 }

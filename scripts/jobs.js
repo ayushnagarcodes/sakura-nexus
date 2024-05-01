@@ -16,8 +16,8 @@ const dialogJobInfo = document.querySelector(".dialog-job-info");
 const dialogCloseBtn = document.getElementById("btn-close-dialog");
 
 // Global Constants
-let countryCode = "gb";
-let region = "london";
+let countryCode = "in";
+let region = "bangalore";
 let currentUrl = "";
 let currentPage = 1;
 let totalPages = null;
@@ -32,6 +32,13 @@ function activateLoader() {
 
 function deactivateLoader() {
     document.querySelector(".loader")?.classList.remove("active");
+}
+
+function toggleFormState(formEl, isDisabled) {
+    const formElArr = [...formEl.elements];
+    formElArr.forEach((el) => {
+        el.disabled = isDisabled;
+    });
 }
 
 function validateInput() {
@@ -179,36 +186,35 @@ function renderUI({ count, results }) {
 async function handleFormSubmit(e) {
     e.preventDefault();
     activateLoader();
-
-    // Validate Input
-    const { validateStatus, err } = validateInput();
-    if (!validateStatus) {
-        deactivateLoader();
-        return alert(err);
-    }
+    toggleFormState(formEl, true); // Disable form elements
 
     // Get Location info + Jobs data
     try {
-        if (validateStatus) {
-            // Resetting currentPage
-            currentPage = 1;
-
-            const url = await createUrl();
-            const data = await getJobList(url);
-
-            // If no results found, throw an error
-            if (data.count === 0) {
-                throw new Error(
-                    "👀 No jobs found! Please enter a different location or salary."
-                );
-            }
-
-            renderUI(data);
+        // Validate Input
+        const { validateStatus, err } = validateInput();
+        if (!validateStatus) {
+            throw new Error(err);
         }
+
+        // Resetting currentPage
+        currentPage = 1;
+
+        const url = await createUrl();
+        const data = await getJobList(url);
+
+        // If no results found, throw an error
+        if (data.count === 0) {
+            throw new Error(
+                "👀 No jobs found! Please enter a different location or salary."
+            );
+        }
+
+        renderUI(data);
     } catch (err) {
         alert(err.message);
     } finally {
         deactivateLoader();
+        toggleFormState(formEl, false); // Enable form elements
     }
 }
 

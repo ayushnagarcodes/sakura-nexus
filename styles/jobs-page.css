@@ -46,6 +46,7 @@ main {
     border-radius: var(--br-small);
     font-family: var(--ff-satoshi-medium);
     color: var(--clr-neutral-50);
+    transition: var(--timing-function) 0.2s;
 }
 
 #btn-search:hover,

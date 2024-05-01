@@ -48,6 +48,7 @@ nav #btn-sign-in {
     font-size: var(--fs-md);
     background-color: var(--clr-primary-600);
     color: var(--clr-primary-50);
+    transition: var(--timing-function) 0.2s;
 }
 
 nav #btn-sign-in:hover {
