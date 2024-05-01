@@ -50,6 +50,10 @@ nav #btn-sign-in {
     color: var(--clr-primary-50);
 }
 
+nav #btn-sign-in:hover {
+    background-color: var(--clr-primary-700);
+}
+
 /* Sticky Nav */
 header.sticky {
     position: fixed;

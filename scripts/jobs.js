@@ -1,4 +1,9 @@
-import { loaderEl, createJobCard, createPaginationEl } from "./templates.js";
+import {
+    loaderEl,
+    createJobCard,
+    createPaginationEl,
+    createJobInfoEl,
+} from "./templates.js";
 
 // DOM Elements
 const jobListEl = document.querySelector(".job-list-section");
@@ -7,11 +12,13 @@ const inputKeywordEl = document.getElementById("keyword");
 const inputLocationEl = document.getElementById("location");
 const inputSalaryEl = document.getElementById("salary");
 const btnLocate = document.getElementById("btn-locate");
+const dialogJobInfo = document.querySelector(".dialog-job-info");
+const dialogCloseBtn = document.getElementById("btn-close-dialog");
 
 // Global Constants
 let countryCode = "gb";
 let region = "london";
-let url = "";
+let currentUrl = "";
 let currentPage = 1;
 let totalPages = null;
 const JOBS_PER_PAGE = 10;
@@ -68,7 +75,7 @@ async function getCountryCode(region) {
     }
 }
 
-async function createURL() {
+async function createUrl() {
     try {
         let keyword = inputKeywordEl.value;
         const location = inputLocationEl.value;
@@ -80,24 +87,26 @@ async function createURL() {
         }
 
         // Building URL
-        url = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${currentPage}?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=${JOBS_PER_PAGE}`;
+        currentUrl = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${currentPage}?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=${JOBS_PER_PAGE}`;
 
         if (keyword) {
             if (keyword.includes(" ")) {
                 keyword = keyword.split(" ").join("%20");
             }
-            url += `&what=${keyword.toLowerCase()}`;
+            currentUrl += `&what=${keyword.toLowerCase()}`;
         }
 
         location
-            ? (url += `&where=${location.toLowerCase()}`)
-            : (url += `&where=${region}`);
+            ? (currentUrl += `&where=${location.toLowerCase()}`)
+            : (currentUrl += `&where=${region}`);
 
-        salary ? (url += `&salary_min=${salary}`) : (url += `&salary_min=0`);
+        salary
+            ? (currentUrl += `&salary_min=${salary}`)
+            : (currentUrl += `&salary_min=0`);
 
-        url += "&sort_by=date&content-type=application/json";
+        currentUrl += "&sort_by=date&content-type=application/json";
 
-        return url;
+        return currentUrl;
     } catch (err) {
         throw new Error(err.message);
     }
@@ -121,8 +130,20 @@ async function getJobList(url) {
     }
 }
 
+function showDialog(obj) {
+    dialogJobInfo.classList.add("active");
+    dialogJobInfo.insertAdjacentHTML("afterbegin", createJobInfoEl(obj));
+    dialogJobInfo.showModal();
+}
+
+function closeDialog() {
+    dialogJobInfo.close();
+    dialogJobInfo.classList.remove("active");
+    document.querySelector("dialog .job-info-container")?.remove();
+}
+
 function renderUI({ count, results }) {
-    // Remove Loader
+    // Remove Everything in jobListEl
     jobListEl.innerHTML = "";
 
     // Add Job Cards
@@ -130,6 +151,14 @@ function renderUI({ count, results }) {
         const jobCardEl = createJobCard(obj);
         jobListEl.insertAdjacentHTML("beforeend", jobCardEl);
     });
+
+    // Adding Event Listener to 'View' button in each Job Card
+    const jobCardViewBtns = [
+        ...document.querySelectorAll(".job-card .btn-view-details"),
+    ];
+    jobCardViewBtns.forEach((btn, i) =>
+        btn.addEventListener("click", () => showDialog(results[i]))
+    );
 
     // Add Pagination
     totalPages = Math.ceil(count / JOBS_PER_PAGE);
@@ -164,13 +193,13 @@ async function handleFormSubmit(e) {
             // Resetting currentPage
             currentPage = 1;
 
-            const url = await createURL();
+            const url = await createUrl();
             const data = await getJobList(url);
 
             // If no results found, throw an error
             if (data.count === 0) {
                 throw new Error(
-                    "👀 No jobs found in this area! Please enter a different location."
+                    "👀 No jobs found! Please enter a different location or salary."
                 );
             }
 
@@ -226,9 +255,16 @@ function initializeApp() {
 }
 
 async function getPage() {
+    // Create new URL -
+    // replacing page number between 'search/' and '?' in the URL with currentPage
+    currentUrl = currentUrl.replace(
+        /search\/([^?]+)\?/,
+        `search/${currentPage}?`
+    );
+
     try {
         activateLoader();
-        const data = await getJobList(url);
+        const data = await getJobList(currentUrl);
         renderUI(data);
     } catch (err) {
         alert(err.message);
@@ -242,10 +278,6 @@ function handlePreviousPage(e) {
     if (currentPage > 1) {
         scroll(0, 0);
         currentPage -= 1;
-
-        // Create new URL -
-        // replacing page number between 'search/' and '?' in the URL with currentPage
-        url = url.replace(/search\/([^?]+)\?/, `search/${currentPage}?`);
         getPage();
     }
     e.target.parentElement.disabled = false;
@@ -256,9 +288,6 @@ function handleNextPage(e) {
     if (currentPage + 1 <= totalPages) {
         scroll(0, 0);
         currentPage += 1;
-
-        // Create new URL
-        url = url.replace(/search\/([^?]+)\?/, `search/${currentPage}?`);
         getPage();
     }
     e.target.parentElement.disabled = false;
@@ -268,3 +297,6 @@ function handleNextPage(e) {
 addEventListener("load", initializeApp);
 formEl.addEventListener("submit", handleFormSubmit);
 btnLocate.addEventListener("click", getUserLocation);
+// Closing dialog on both events: (1) Btn click & (2) 'Esc' key press
+dialogCloseBtn.addEventListener("click", closeDialog);
+dialogJobInfo.addEventListener("close", closeDialog);

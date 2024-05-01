@@ -23,12 +23,13 @@ function dateDiffText(inputDate) {
     return createdAtText;
 }
 
-export function createJobCard(obj) {
-    const salaryText =
-        obj.salary_min === obj.salary_max
-            ? `¥ ${obj.salary_min}`
-            : `¥ ${obj.salary_min} - ¥ ${obj.salary_max}`;
+function salaryText(salary_min, salary_max) {
+    return salary_min === salary_max
+        ? `¥ ${salary_min}`
+        : `¥ ${salary_min} - ¥ ${salary_max}`;
+}
 
+export function createJobCard(obj) {
     return `
         <article class="job-card">
             <span class="title">${obj.title}</span>
@@ -60,7 +61,10 @@ export function createJobCard(obj) {
                     <span>Annual salary</span>
                 </div>
 
-                <span class="amount">${salaryText}</span>
+                <span class="amount">${salaryText(
+                    obj.salary_min,
+                    obj.salary_max
+                )}</span>
             </div>
 
             <div class="card-footer">
@@ -77,6 +81,58 @@ export function createJobCard(obj) {
                 </button>
             </div>
         </article>
+    `;
+}
+
+export function createJobInfoEl(obj) {
+    return `
+        <div class="job-info-container">
+            <h1 class="title">${obj.title}</h1>
+
+            <div class="details">
+                <div class="company text-with-icon">
+                    <img src="/assets/icons/Office.svg" alt="office icon" />
+                    <span>${obj.company.display_name}</span>
+                </div>
+
+                <div class="location text-with-icon">
+                    <img
+                        src="/assets/icons/Location.svg"
+                        alt="location icon"
+                    />
+                    <span>${obj.location.display_name}</span>
+                </div>
+            </div>
+
+            <div class="info-flex">
+                <div class="salary">
+                    <div class="salary-heading text-with-icon">
+                        <img
+                            src="/assets/icons/Money.svg"
+                            alt="money icon"
+                        />
+                        <span>Annual salary</span>
+                    </div>
+
+                    <span class="amount">${salaryText(
+                        obj.salary_min,
+                        obj.salary_max
+                    )}</span>
+                </div>
+
+                <div class="created-at text-with-icon">
+                    <img
+                        src="/assets/icons/Clock.svg"
+                        alt="clock icon"
+                    /><span>${dateDiffText(obj.created)}</span>
+                </div>
+            </div>
+
+            <h2>Job Description</h2>
+            <p>
+                ${obj.description}
+            </p>
+        </div>
     `;
 }
 
