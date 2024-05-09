@@ -1,3 +1,4 @@
+import { API_KEY_GEOCODE, APP_ID_ADZUNA, APP_KEY_ADZUNA } from "./apiKeys.js";
 import {
     loaderEl,
     createJobCard,
@@ -69,7 +70,7 @@ function validateInput() {
 async function getCountryCode(region) {
     try {
         const res = await fetch(
-            `https://geocode.xyz/${region}?geoit=json&auth=161224511659307274977x38979`
+            `https://geocode.xyz/${region}?geoit=json&auth=${API_KEY_GEOCODE}`
         );
         if (!res.ok) {
             throw new Error("💥 Something went wrong!");
@@ -107,7 +108,7 @@ async function createUrl() {
         }
 
         // Building URL
-        currentUrl = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${currentPage}?app_id=1cf5c31c&app_key=4177290149d2c1dc2d5005d757653e3f&results_per_page=${JOBS_PER_PAGE}`;
+        currentUrl = `https://api.adzuna.com/v1/api/jobs/${countryCode}/search/${currentPage}?app_id=${APP_ID_ADZUNA}&app_key=${APP_KEY_ADZUNA}&results_per_page=${JOBS_PER_PAGE}`;
 
         if (keyword) {
             if (keyword.includes(" ")) {
@@ -246,7 +247,7 @@ async function getUserLocation(e) {
             // Reverse Geocoding to get countryCode and region
             try {
                 const res = await fetch(
-                    `https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=161224511659307274977x38979`
+                    `https://geocode.xyz/${latitude},${longitude}?geoit=json&auth=${API_KEY_GEOCODE}`
                 );
                 if (!res.ok) {
                     throw new Error("💥 Something went wrong!");
